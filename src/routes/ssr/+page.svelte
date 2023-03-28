@@ -12,3 +12,4 @@
 		<div class="error">Failed to load pets. Please try again later.</div>
 	{/if}
 </div>
+<div class="code-snippet" />

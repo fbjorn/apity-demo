@@ -3,7 +3,7 @@
 	import theme from 'svelte-highlight/styles/atom-one-light';
 
 	type SourceFile = {
-		name: string;
+		path: string;
 		code: string;
 	};
 	export let snippets: SourceFile[];
@@ -26,7 +26,7 @@
 	{#if isExpanded}
 		{#each snippets as snippet}
 			<div class="snippet">
-				<div class="filename">{snippet.name}</div>
+				<div class="filename">{snippet.path}</div>
 				<HighlightAuto code={snippet.code} />
 			</div>
 		{/each}
@@ -39,12 +39,13 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 1rem;
-		margin-top: 2rem;
+		margin: 2rem 0;
 	}
 
 	.snippet {
 		display: flex;
 		flex-direction: column;
+		width: 100%;
 		gap: 1rem;
 	}
 

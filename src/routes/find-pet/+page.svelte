@@ -33,6 +33,7 @@
 		<pre>{resp}</pre>
 	{/if}
 </div>
+<div class="code-snippet" />
 
 <style lang="scss">
 	.form {

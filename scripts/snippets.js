@@ -1,8 +1,6 @@
-// const fs = require('fs');
 import * as fs from 'fs';
 
-// const DIRS = ['src/routes/ssr'];
-const DIRS = ['src/routes/find-pet'];
+const DIRS = ['src/routes/find-pet', 'src/routes/await', 'src/routes/post', 'src/routes/ssr'];
 
 for (let dirName of DIRS) {
 	const pageSvelte = `${dirName}/+page.svelte`;
@@ -15,7 +13,10 @@ for (let dirName of DIRS) {
 
 	const content = fs.readFileSync(pageSvelte, 'utf8');
 	const snippetPlaceholder = '<div class="code-snippet" />';
-	const sourceCode = content.replace(snippetPlaceholder, '').replace('</script>', '<\\/script>');
+	const sourceCode = content
+		.replace(snippetPlaceholder, '')
+		.replace('</script>', '<\\/script>')
+		.replace(/<style[\s\S]+<\/style>/, '');
 
 	let extraJS = '<script lang="ts">\nconst pageCode = `\n' + sourceCode + '`\n';
 	if (serverContent !== '') {
@@ -33,7 +34,6 @@ for (let dirName of DIRS) {
 		.replace('<script lang="ts">', extraJS)
 		.replace(snippetPlaceholder, '<CodeSnippet snippets={' + prop + '} />');
 
-	console.log(newContent);
-
+	console.log(`Tweaking ${pageSvelte}`);
 	fs.writeFileSync(pageSvelte, newContent);
 }

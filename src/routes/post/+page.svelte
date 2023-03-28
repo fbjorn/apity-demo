@@ -86,6 +86,7 @@
 		{/if}
 	</div>
 </div>
+<div class="code-snippet" />
 
 <style lang="scss">
 	.wrapper {

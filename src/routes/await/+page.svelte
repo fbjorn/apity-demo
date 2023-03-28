@@ -28,6 +28,7 @@
 		</div>
 	{/await}
 </div>
+<div class="code-snippet" />
 
 <style lang="scss">
 	.button-wrapper {

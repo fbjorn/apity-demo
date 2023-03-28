@@ -8,8 +8,8 @@
     }
     export let snippets: SourceFile[]
 
-    const repoUrl = 'https://github.com/fbjorn/apity-demo'
-    let isExpanded = true
+    const repoUrl = 'https://github.com/fbjorn/apity-demo/blob/main'
+    let isExpanded = false
 </script>
 
 <svelte:head>

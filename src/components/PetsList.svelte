@@ -27,6 +27,10 @@
 </ol>
 
 <style lang="scss">
+    ol {
+        padding-left: 1.5rem;
+    }
+
     li {
         margin: 1rem 0;
         padding: 0 0 1rem 0;

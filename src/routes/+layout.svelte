@@ -6,10 +6,12 @@
     import Footer from '$components/Footer.svelte'
 </script>
 
-<div class="layout container">
-    <NavBar />
-    <div class="content px-4 pt-3 pb-6">
-        <slot />
+<div class="layout">
+    <div class="wrapper container">
+        <NavBar />
+        <div class="content px-4 pt-3 pb-6">
+            <slot />
+        </div>
     </div>
     <Footer />
 </div>
@@ -19,6 +21,10 @@
         display: flex;
         min-height: 100vh;
         flex-direction: column;
+    }
+
+    .wrapper {
+        width: 100%;
     }
 
     .content {

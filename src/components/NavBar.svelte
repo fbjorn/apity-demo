@@ -20,6 +20,10 @@
 
 <nav class="navbar mb-6" aria-label="main navigation">
     <div class="navbar-brand">
+        <a class="navbar-item" href="https://github.com/cocreators-ee/apity">
+            <img src="/logo.svg" alt="apity logo" />
+        </a>
+
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-missing-attribute -->
         <a
@@ -59,3 +63,15 @@
         </div>
     </div>
 </nav>
+
+<style lang="scss">
+    .navbar-brand .navbar-item {
+        padding: 0 1rem;
+
+        img {
+            width: 100%;
+            height: 100%;
+            max-height: 4rem;
+        }
+    }
+</style>

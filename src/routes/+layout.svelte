@@ -5,7 +5,7 @@
     import NavBar from '$components/NavBar.svelte'
 </script>
 
-<div class="container mt-6">
+<div class="container p-4 mb-5">
     <NavBar />
     <slot />
 </div>

@@ -24,12 +24,12 @@
         <p />
     </div>
 
-    <div class="columns mt-6">
-        <div class="column is-one-third-desktop">
+    <div class="grid">
+        <div>
             <a href="/ssr" class="section-link">SSR</a>
             <div>Data in this example is fetched in <span class="code">+page.server.ts</span></div>
         </div>
-        <div class="column is-one-third-desktop">
+        <div>
             <a href="/await" class="section-link">Using #await syntax</a>
             <div>
                 <a
@@ -42,30 +42,21 @@
             </div>
             <div>This example also shows how the request can be reloaded on some action.</div>
         </div>
-        <div class="column is-one-third-desktop">
+        <div>
             <a href="/find-pet" class="section-link">Path parameters</a>
             <div>Fetching an API route that has a path parameter.</div>
             <div>
                 This example also describes the <span class="code">ApiResponse</span> structure
             </div>
         </div>
-    </div>
-    <div class="columns mt-6">
-        <div class="column is-one-third-desktop">
+        <div>
             <a href="/post" class="section-link">POST request</a>
             <div>An example of sending a JSON to server</div>
         </div>
     </div>
 </div>
 
-<style>
-    .links {
-        display: flex;
-        flex-direction: column;
-        /* width: 30rem; */
-        margin: 0 auto;
-    }
-
+<style lang="scss">
     .code {
         background-color: aliceblue;
         padding: 0.25rem;
@@ -77,11 +68,17 @@
         font-weight: 600;
     }
 
-    .box {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+    .grid {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 2rem;
+        margin-top: 2rem;
+
+        @media only screen and (max-width: 900px) {
+            grid-template-columns: auto;
+        }
     }
+
     p {
         margin: 0.5rem 0;
     }

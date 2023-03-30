@@ -20,12 +20,14 @@
 
 <nav class="navbar mb-6" aria-label="main navigation">
     <div class="navbar-brand">
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-missing-attribute -->
         <a
             on:click={toggleMenu}
             role="button"
             class="navbar-burger"
             aria-label="menu"
-            aria-expanded={isOpened ? 'true' : 'false'}
+            aria-expanded="false"
             data-target="navbarBasicExample"
         >
             <span aria-hidden="true" />

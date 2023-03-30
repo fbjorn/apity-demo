@@ -65,13 +65,10 @@
 </nav>
 
 <style lang="scss">
-    .navbar-brand .navbar-item {
-        padding: 0 1rem;
-
-        img {
-            width: 100%;
-            height: 100%;
-            max-height: 4rem;
-        }
+    .navbar-brand .navbar-item img {
+        width: 100%;
+        height: 100%;
+        max-height: 4rem;
+        max-width: 6rem;
     }
 </style>

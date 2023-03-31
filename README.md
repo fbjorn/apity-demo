@@ -4,13 +4,22 @@ This application should help you to understand how to use [Apity](https://github
 
 It's built upon [Petstore](https://petstore3.swagger.io/) OpenAPI spec.
 
-## Usage
+## Online demo
+
+This application has an [online demo](https://apity-demo.vercel.app/).
+
+Every page has its own source code, so this should be an easiest way to get started.
+
+Alternatively, you can run it locally.
+
+## Local development
 
 ```bash
+# install dependencies
 pnpm install
 
 # run development server
 pnpm run dev
 ```
 
-After running the application it will be available on http://127.0.0.1:5173/
+The application will be accessible on http://127.0.0.1:5173/

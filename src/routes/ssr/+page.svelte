@@ -1,15 +1,23 @@
 <script lang="ts">
+    import PetsList from '$components/PetsList.svelte'
     import type { PageData } from './$types'
-    import PetsGrid from '$components/PetsGrid.svelte'
 
     export let data: PageData
 </script>
 
-<div>
-    {#if !data.error}
-        <PetsGrid pets={data.pets} />
-    {:else}
-        <div class="error">Failed to load pets. Please try again later.</div>
-    {/if}
+<div class="columns is-centered">
+    <div class="column is-half-tablet">
+        {#if !data.error}
+            <p class="mb-4 has-text-centered">
+                No loading spinners on client, data is fetched on server during SSR.
+            </p>
+            <PetsList pets={data.pets} />
+        {:else}
+            <p class="error">Failed to load pets. Please try again later.</p>
+        {/if}
+    </div>
 </div>
 <div class="code-snippet" />
+
+<style lang="scss">
+</style>

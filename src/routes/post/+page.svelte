@@ -1,9 +1,6 @@
 <script lang="ts">
     import type { components } from '$lib/petstore'
-    import Pet from '$components/Pet.svelte'
     import { addPet } from '$lib/api'
-
-    let loading = false
 
     let name = 'Doggo'
     let photoUrl = ''
@@ -11,12 +8,13 @@
     let status: 'available' | 'sold' | 'pending' = 'available'
 
     let pet: components['schemas']['Pet'] | undefined = undefined
-    let rawResp = ''
+    let error = ''
+    let loading = false
 
     async function onSubmit() {
         loading = true
         pet = undefined
-        rawResp = ''
+        error = ''
 
         const tags = tagsString ? tagsString.split(',').map((tag, i) => ({ name: tag, id: i })) : []
 
@@ -28,84 +26,84 @@
             console.log(response.data)
             pet = response.data
         } else {
-            rawResp = JSON.stringify(response, null, 2)
+            error = 'Failed to create a pet'
         }
         loading = false
     }
 </script>
 
-<div class="wrapper">
-    <form class="form" on:submit|preventDefault={onSubmit}>
-        <div class="field">
-            <label class="label" for="name">Name</label>
-            <div class="control">
-                <input
-                    id="name"
-                    class="input"
-                    type="text"
-                    placeholder="Pet name"
-                    bind:value={name}
-                />
+<div class="columns is-centered">
+    <div class="column is-half-tablet is-one-third-desktop">
+        <p class="mb-5">This page sends a POST request to create a pet</p>
+        <form on:submit|preventDefault={onSubmit}>
+            <div class="field">
+                <label class="label" for="name">Name</label>
+                <div class="control">
+                    <input
+                        id="name"
+                        class="input"
+                        type="text"
+                        placeholder="Pet name"
+                        bind:value={name}
+                    />
+                </div>
             </div>
-        </div>
-
-        <div class="field">
-            <label class="label" for="photoUrl">Photo</label>
-            <div class="control">
-                <input
-                    id="photoUrl"
-                    class="input"
-                    type="text"
-                    placeholder="Photo URL"
-                    bind:value={photoUrl}
-                />
+            <div class="field">
+                <label class="label" for="photoUrl">Photo</label>
+                <div class="control">
+                    <input
+                        id="photoUrl"
+                        class="input"
+                        type="text"
+                        placeholder="Photo URL"
+                        bind:value={photoUrl}
+                    />
+                </div>
             </div>
-        </div>
-
-        <div class="field">
-            <label class="label" for="tags">Tags</label>
-            <div class="control">
-                <input
-                    id="tags"
-                    class="input"
-                    type="text"
-                    placeholder="Tags"
-                    bind:value={tagsString}
-                />
+            <div class="field">
+                <label class="label" for="tags">Tags</label>
+                <div class="control">
+                    <input
+                        id="tags"
+                        class="input"
+                        type="text"
+                        placeholder="Tags"
+                        bind:value={tagsString}
+                    />
+                </div>
+                <p class="help">Comma separated list of tags</p>
             </div>
-            <p class="help">Comma separated list of tags</p>
-        </div>
-
-        <div class="field">
-            <label class="label" for="tags">Status</label>
-            <div class="control select is-fullwidth">
-                <select bind:value={status}>
-                    <option value="available">Available</option>
-                    <option value="sold">Sold</option>
-                    <option value="pending">Pending</option>
-                </select>
+            <div class="field">
+                <label class="label" for="tags">Status</label>
+                <div class="control select is-fullwidth">
+                    <select bind:value={status}>
+                        <option value="available">Available</option>
+                        <option value="sold">Sold</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <button type="submit" class="button is-primary" class:is-loading={loading}>Create</button>
-    </form>
+            <button type="submit" class="button is-primary" class:is-loading={loading}>
+                Create
+            </button>
+        </form>
 
-    <div class="result mt-6">
-        {#if pet}
-            <div>Your pet has been created:</div>
-            <Pet {pet} />
-        {:else if rawResp}
-            <pre>{rawResp}</pre>
-        {/if}
+        <div class="result mt-6">
+            {#if pet}
+                <div>Your pet has been created:</div>
+                <div><strong>Name: </strong>{pet.name}</div>
+                <div><strong>Tags: </strong>{pet.tags.map((t) => t.name).join(', ')}</div>
+                <div><strong>ID: </strong>{pet.id}</div>
+            {:else if error}
+                <p>{error}</p>
+            {/if}
+        </div>
     </div>
 </div>
 <div class="code-snippet" />
 
 <style lang="scss">
-    .wrapper {
-        width: 30rem;
-        margin: 0 auto;
-    }
-    .form {
+    form {
         display: flex;
         flex-direction: column;
         gap: 1rem;
